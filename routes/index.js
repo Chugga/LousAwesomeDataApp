@@ -10,11 +10,11 @@ const app = express();
 app.use(bodyParser);
 
 /* GET home page. */
-app.get('/', function(res, req) {
+app.get('/', function(req, res) {
     res.render('index', { title: "Lou's Awesome Chart!", hone: "Chart" });
 });
 
-app.get('/chartData', function(res, req) {
+app.get('/chartData', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
 
     googleTrends.interestOverTime({keyword: 'potato'})
@@ -39,7 +39,7 @@ app.get('/chartData', function(res, req) {
         });
 });
 
-router.get('/locationData', function(req, res, next) {
+app.get('/locationData', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
 
     googleTrends.interestByRegion({keyword: 'potato', startTime: new Date('2019-01-01'), endTime: new Date('2019-07-01'), geo: 'FR', resolution: 'DMA'})
