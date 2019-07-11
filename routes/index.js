@@ -1,15 +1,20 @@
 const express = require('express');
-const router = express.Router();
+const serverless = require('serverless-http');
+const bodyParser = require('body-parser');
 const googleTrends = require('google-trends-api');
 const moment = require('moment');
 const debug = require('debug')('LouApp');
 
+const app = express();
+
+app.use(bodyParser);
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+app.get('/', function(res, req) {
     res.render('index', { title: "Lou's Awesome Chart!", hone: "Chart" });
 });
 
-router.get('/chartData', function(req, res, next) {
+app.get('/chartData', function(res, req) {
     res.setHeader('Content-Type', 'application/json');
 
     googleTrends.interestOverTime({keyword: 'potato'})
@@ -60,4 +65,4 @@ router.get('/locationData', function(req, res, next) {
         });
 });
 
-module.exports = router;
+module.exports.handler = serverless(app);
