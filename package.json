@@ -15,7 +15,7 @@
     "http-errors": "~1.6.3",
     "moment": "^2.24.0",
     "morgan": "~1.9.1",
-    "npm": "^6.10.0",
+    "npm": "^6.13.4",
     "pug": "2.0.0-beta11",
     "serverless-http": "^2.0.2"
   }
